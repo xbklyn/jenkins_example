@@ -1,0 +1,19 @@
+pipeline {
+  agent any
+
+  parameters {
+      string(defaultValue: "Custome deploy" , description: "What is this job's name?", name: "deployName")
+      choice(choices: ["EU-WEST-2a" , "EU-WEST-2B" , "EU-WEST-2C"], description: "Which AZ to deploy?", name: "deployServer")
+      booleanParam(defaultValue: false, description: "Confirm for deployment?", name: "isConfirm")
+  }
+
+  stages {
+    stage("Demo"){
+      steps {
+        echo "Your custom name is set to : ${params.deployName}"
+        echo "Your server for deployment is set to : ${params.deployServer}"
+        echo "Your confirmation is set to : ${params.isConfirm}"
+      }
+    }
+  }
+}
